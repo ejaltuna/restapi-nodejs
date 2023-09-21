@@ -54,18 +54,18 @@ export const createProducto = async (req, res) => {
   }
 };
 
-export const updateEmployee = async (req, res) => {
+export const updateProducto = async (req, res) => {
   try {
     const { id } = req.params;
-    const { name, salary } = req.body;
+    const { codigo, nombre, descripcion, marca, modelo, precio, precio_dolar, stock, categoria_id, ruta_img, condicion, estado} = req.body;
 
     const [result] = await pool.query(
-      "UPDATE employee SET name = IFNULL(?, name), salary = IFNULL(?, salary) WHERE id = ?",
-      [name, salary, id]
+      "UPDATE productos SET  codigo = IFNULL(?,codigo), nombre = IFNULL(?,nombre), descripcion = IFNULL(?, descripcion), marca= IFNULL(?, marca), modelo = IFNULL(?,modelo), precio= IFNULL(?, precio), precio_dolar = IFNULL(?, precio_dolar), stock = IFNULL(?, stock), categoria_id = IFNULL(?, categori_id), ruta_img = IFNULL(?, ruta_img), condicion = IFNULL(?, condicion), estado = IFNULL(?, estado) WHERE id = ?",
+      [codigo, nombre, descripcion, marca, modelo, precio, precio_dolar, stock, categoria_id, ruta_img, condicion, estado, id]
     );
 
     if (result.affectedRows === 0)
-      return res.status(404).json({ message: "Employee not found" });
+      return res.status(404).json({ message: "Producto not found" });
 
     const [rows] = await pool.query("SELECT * FROM employee WHERE id = ?", [
       id,

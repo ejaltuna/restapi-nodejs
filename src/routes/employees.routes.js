@@ -4,7 +4,7 @@ import {
   deleteProducto,
   getProducto,
   getProductos,
-  updateEmployee,
+  updateProducto,
 } from "../controllers/employees.controller.js";
 
 const router = Router();
@@ -21,6 +21,6 @@ router.delete("/producto/:id", deleteProducto);
 // INSERT An producto
 router.post("/producto", createProducto);
 
-router.patch("/employees/:id", updateEmployee);
+router.patch("/producto/:id", updateProducto);
 
 export default router;
