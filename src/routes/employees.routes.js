@@ -1,6 +1,6 @@
 import { Router } from "express";
 import {
-  createEmployee,
+  createProducto,
   deleteProducto,
   getProducto,
   getProductos,
@@ -9,17 +9,17 @@ import {
 
 const router = Router();
 
-// GET all Employees
+// GET all productos
 router.get("/productos", getProductos);
 
-// GET An Employee
+// GET An producto
 router.get("/producto/:id", getProducto);
 
-// DELETE An Employee
+// DELETE An producto
 router.delete("/producto/:id", deleteProducto);
 
-// INSERT An Employee
-router.post("/employees", createEmployee);
+// INSERT An producto
+router.post("/employees", createProducto);
 
 router.patch("/employees/:id", updateEmployee);
 

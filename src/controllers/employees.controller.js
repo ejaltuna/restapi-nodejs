@@ -41,14 +41,14 @@ export const deleteProducto = async (req, res) => {
   }
 };
 
-export const createEmployee = async (req, res) => {
+export const createProducto = async (req, res) => {
   try {
-    const { name, salary } = req.body;
+    const { codigo, nombre, descripcion, marca, modelo, precio, precio_dolar, stock, categoria_id, ruta_img, condicion, estado} = req.body;
     const [rows] = await pool.query(
-      "INSERT INTO employee (name, salary) VALUES (?, ?)",
-      [name, salary]
+      "INSERT INTO employee (codigo, nombre, descripcion, marca, modelo, precio, precio_dolar, stock, categoria_id, ruta_img, condicion, estado) VALUES  (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ? )",
+      [codigo, nombre, descripcion, marca, modelo, precio, precio_dolar, stock, categoria_id, ruta_img, condicion, estado]
     );
-    res.status(201).json({ id: rows.insertId, name, salary });
+    res.status(201).json({ id: rows.insertId, codigo, nombre, descripcion, marca, modelo, precio, precio_dolar, stock, categoria_id, ruta_img, condicion, estado});
   } catch (error) {
     return res.status(500).json({ message: "Something goes wrong" });
   }
