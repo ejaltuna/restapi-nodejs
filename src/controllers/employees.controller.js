@@ -45,7 +45,7 @@ export const createProducto = async (req, res) => {
   try {
     const { codigo, nombre, descripcion, marca, modelo, precio, precio_dolar, stock, categoria_id, ruta_img, condicion, estado} = req.body;
     const [rows] = await pool.query(
-      "INSERT INTO employee (codigo, nombre, descripcion, marca, modelo, precio, precio_dolar, stock, categoria_id, ruta_img, condicion, estado) VALUES  (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ? )",
+      "INSERT INTO productos (codigo, nombre, descripcion, marca, modelo, precio, precio_dolar, stock, categoria_id, ruta_img, condicion, estado) VALUES  (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ? )",
       [codigo, nombre, descripcion, marca, modelo, precio, precio_dolar, stock, categoria_id, ruta_img, condicion, estado]
     );
     res.status(201).json({ id: rows.insertId, codigo, nombre, descripcion, marca, modelo, precio, precio_dolar, stock, categoria_id, ruta_img, condicion, estado});
