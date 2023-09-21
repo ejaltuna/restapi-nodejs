@@ -3,14 +3,14 @@ import {
   createEmployee,
   deleteEmployee,
   getEmployee,
-  getEmployees,
+  getProductos,
   updateEmployee,
 } from "../controllers/employees.controller.js";
 
 const router = Router();
 
 // GET all Employees
-router.get("/employees", getEmployees);
+router.get("/productos", getProductos);
 
 // GET An Employee
 router.get("/employees/:id", getEmployee);
