@@ -19,7 +19,7 @@ router.get("/producto/:id", getProducto);
 router.delete("/producto/:id", deleteProducto);
 
 // INSERT An producto
-router.post("/employees", createProducto);
+router.post("/producto", createProducto);
 
 router.patch("/employees/:id", updateEmployee);
 
