@@ -2,7 +2,7 @@ import { Router } from "express";
 import {
   createEmployee,
   deleteEmployee,
-  getEmployee,
+  getProducto,
   getProductos,
   updateEmployee,
 } from "../controllers/employees.controller.js";
@@ -13,7 +13,7 @@ const router = Router();
 router.get("/productos", getProductos);
 
 // GET An Employee
-router.get("/employees/:id", getEmployee);
+router.get("/producto/:id", getProducto);
 
 // DELETE An Employee
 router.delete("/employees/:id", deleteEmployee);

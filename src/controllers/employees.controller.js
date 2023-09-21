@@ -9,10 +9,10 @@ export const getProductos = async (req, res) => {
   }
 };
 
-export const getEmployee = async (req, res) => {
+export const getProducto = async (req, res) => {
   try {
     const { id } = req.params;
-    const [rows] = await pool.query("SELECT * FROM employee WHERE id = ?", [
+    const [rows] = await pool.query("SELECT * FROM productos WHERE id = ?", [
       id,
     ]);
 
