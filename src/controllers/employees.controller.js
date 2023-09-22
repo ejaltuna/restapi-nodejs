@@ -55,22 +55,41 @@ export const createProducto = async (req, res) => {
 };
 
 export const updateProducto = async (req, res) => {
+  console.log('estoy aqui');
   try {
-    const { id } = req.params;
-    const { codigo, nombre, descripcion, marca, modelo, precio, precio_dolar, stock, categoria_id, ruta_img, condicion, estado} = req.body;
+     const { id } = req.params;
+     const { codigo, nombre, descripcion, marca, modelo, precio, precio_dolar, stock, categoria_id, ruta_img, condicion, estado} = req.body;
 
-    const [result] = await pool.query(
-      "UPDATE productos SET  codigo = IFNULL(?,codigo), nombre = IFNULL(?,nombre), descripcion = IFNULL(?, descripcion), marca= IFNULL(?, marca), modelo = IFNULL(?,modelo), precio= IFNULL(?, precio), precio_dolar = IFNULL(?, precio_dolar), stock = IFNULL(?, stock), categoria_id = IFNULL(?, categori_id), ruta_img = IFNULL(?, ruta_img), condicion = IFNULL(?, condicion), estado = IFNULL(?, estado) WHERE id = ?",
-      [codigo, nombre, descripcion, marca, modelo, precio, precio_dolar, stock, categoria_id, ruta_img, condicion, estado, id]
+     const [result] = await pool.query(
+      "UPDATE productos SET codigo = IFNULL(?, codigo), nombre =  IFNULL(?, nombre), descripcion  =  IFNULL(?, descripcion),  marca =  IFNULL(?, marca), modelo =  IFNULL(?, modelo), precio =  IFNULL(?,precio), precio_dolar =  IFNULL(?, precio_dolar), stock =  IFNULL(?, stock), categoria_id =  IFNULL(?, categoria_id), ruta_img =  IFNULL(?, ruta_img), condicion =  IFNULL(?, condicion), estado =  IFNULL(?, estado) WHERE id = ?",
+      [
+        codigo,
+        nombre,
+        descripcion,
+        marca,
+        modelo,
+        precio,
+        precio_dolar,
+        stock,
+        categoria_id,
+        ruta_img,
+        condicion,
+        estado,
+        id,
+      ]
     );
 
+    // console.log(result);
     if (result.affectedRows === 0)
-      return res.status(404).json({ message: "Producto not found" });
+      return res.status(404).json({
+        mensaje: "Producto no encontrado",
+      });
 
-    const [rows] = await pool.query("SELECT * FROM employee WHERE id = ?", [
+    // if(result.affectedRows === 1)return
+
+    const [rows] = await pool.query("SELECT * FROM productos WHERE id= ?", [
       id,
     ]);
-
     res.json(rows[0]);
   } catch (error) {
     return res.status(500).json({ message: "Something goes wrong" });

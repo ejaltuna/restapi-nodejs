@@ -21,6 +21,7 @@ router.delete("/producto/:id", deleteProducto);
 // INSERT An producto
 router.post("/producto", createProducto);
 
+
 router.patch("/producto/:id", updateProducto);
 
 export default router;
